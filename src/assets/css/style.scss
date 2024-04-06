@@ -1,8 +1,8 @@
 $head-fold: true;
 
 :root {
-    --bg1: url("./assets/image/bg3.jpg");
-    --bg2: url("./assets/image/bg3.jpg");
+    --bg1: url("./assets/image/bg1.jpg");
+    --bg2: url("./assets/image/bg2.jpg");
     --left-dis: 175px;
     --top-dis: 40px;
     --icon-size : 16px;
@@ -30,7 +30,7 @@ $head-fold: true;
 
 
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 700px) {
     #bg {
         background-image: var(--bg2);
         left: 0px;
@@ -54,12 +54,48 @@ $head-fold: true;
     .click_hide {
         display: none;
     }
+
+    
+    .list {
+        flex-direction:column;
+        justify-items: flex-start;
+        position:fixed;
+        top: var(--top-dis);
+        width: 100%;
+        right: 0!important;
+        // padding: 0;
+        height: fit-content!important;
+        background-color: var(--top-color);
+    }
+
+    .list.head-fold {
+        display: none!important;
+    }
+
+    .dropdown {
+        width: 100%;
+        height: 5vh;
+        flex-grow: unset!important;
+        box-shadow: 0 -1px 0 rgba(0,0,0,.1);
+    }
+
+    .dropdown a {
+        // padding-top: 20px;
+        // padding-bottom: 20px;
+        width: 100%;
+        height: 100%;
+        padding-left: 3%;
+    }
+
+    .dropdown a svg{
+        padding-right: 1%;
+    }
 }
 
 #bg-mask {
     position: fixed;
     background-size: cover;
-    background-color: rgba(0, 0, 0, 0.128);
+    background-color: rgba(0, 0, 0, 0.428);
     background-position: center center;
     z-index: -1;
     top: var(--top-dis);
@@ -112,7 +148,7 @@ $head-fold: true;
     width:  var(--icon-size);
 }
 
-.list {
+.list ,.list2{
     display: flex;
     right: -15px; 
     height: 100%;
@@ -151,6 +187,7 @@ $head-fold: true;
 
     &:hover {
         background-color: darken(#39d3e6, 8%); 
+        cursor: pointer;
     }
   
     &:active {
