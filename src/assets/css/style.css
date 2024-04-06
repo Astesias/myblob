@@ -1,0 +1,34 @@
+#bg {
+    position: fixed;
+    background-size: cover;
+    background-image: url("../image/bg1.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    z-index: -1;
+    top: 50px;
+    left: 200px;
+    right: 0;
+    bottom: 0;
+    display: block;
+    box-sizing: border-box;
+}
+@media screen and (max-width: 1000px) {
+    #bg {
+        background-image: url("../image/bg2.jpg"); /* 当屏幕宽度小于1000px时使用的背景图片 */
+    }
+}
+
+#bg-mask {
+    position: fixed;
+    background-size: cover;
+    background-color: rgba(0, 0, 0, 0.128);
+    background-position: center center;
+    background-repeat: no-repeat;
+    z-index: -1;
+    top: 50px;
+    left: 200px;
+    right: 0;
+    bottom: 0;
+    display: block;
+    box-sizing: border-box;
+}
