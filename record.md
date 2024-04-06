@@ -5,3 +5,12 @@
 参考https://moe.best/
 了解flex布局
 https://flexboxfroggy.com/
+var()使用
+做了右边顶部导航栏 怎么就定位不到想要的地方呢
+素材库 https://www.iconfont.cn/
+解决了内网穿透不能访问的问题 vue.config.js
+!important真好用
+做了隐藏侧边栏
+装了scss
+moe.best里折叠header展开前后都是同一个元素，好厉害，
+学不会就先用两中导航条来回切换
