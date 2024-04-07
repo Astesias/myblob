@@ -55,6 +55,9 @@ $head-fold: true;
         display: none;
     }
 
+    .list.head-fold {
+        display: none!important;
+    }
     
     .list {
         flex-direction:column;
@@ -66,10 +69,6 @@ $head-fold: true;
         // padding: 0;
         height: fit-content!important;
         background-color: var(--top-color);
-    }
-
-    .list.head-fold {
-        display: none!important;
     }
 
     .dropdown {
@@ -152,12 +151,12 @@ $head-fold: true;
     display: flex;
     right: -15px; 
     height: 100%;
-    padding-left: 10px;
+    // padding-left: 10px;
 }
 
-.list div:nth-last-child(2) a {
-    padding-right: 10px;
-}
+// .list div:nth-last-child(2) a {
+//     padding-right: 10px;
+// }
 
 .dropdown {
     display: flex;
@@ -205,4 +204,85 @@ $head-fold: true;
     border-right: 4px solid transparent;
     border-left: 4px solid transparent;
     color: #fff;
+}
+
+
+#login-tab {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: var(--top-dis);
+    right: 0;
+    height: fit-content;
+    // width: 30%;
+    background-color: white;
+    padding-bottom: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    
+    
+}
+
+.login-item{
+    margin-top: 5px;
+}
+
+#login-tab div div{
+    display: flex;
+    text-align: left;
+    font-size: 10px;
+    color: #58666e;
+    margin-bottom: 5px;
+    font-family: "Source Sans Pro","Hiragino Sans GB","Microsoft Yahei",SimSun,Helvetica,Arial,Sans-serif;
+}
+
+#login-tab button{
+    font-family: "Source Sans Pro","Hiragino Sans GB","Microsoft Yahei",SimSun,Helvetica,Arial,Sans-serif;
+    font-size: 10px;
+    background-color: var(--top-color);
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+        background-color: darken(#39d3e6, 8%); 
+        cursor: pointer;
+    }
+  
+    &:active {
+        background-color: darken(#39d3e6, 10%);
+    }
+}
+
+.btn {
+    display: inline-block;
+    padding: 5px 12px;
+    margin-bottom: 0;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.22857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    
+    &:active {
+        background-color: darken(#39d3e6, 10%);
+    }
+
+    &:focus {
+        outline: none;
+    }
+}
+
+div {
+    user-select: none;
 }

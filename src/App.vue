@@ -30,21 +30,32 @@
                     </a>
                 </div>
                 <div class="dropdown">
-                    <a href="#" class="icon-a">
+                    <a href="#" class="icon-a" @click="flatenLogin">
                         <div class="text-div">
                             <span class="icon text">登录</span>
                             <b class="caret"></b>
                         </div>
                     </a>
                 </div>
+                <div id="login-tab" v-show="loginFold">
+                    <div class="login-item">
+                        <div>邮箱/用户名</div>
+                        <input type="text">
+                    </div>
+                    <div class="login-item">
+                        <div >密码</div>
+                        <input type="text">
+                    </div>
+                    <button class="login-item btn">登录</button>
+                </div>
             </div>
             <div class="list2">
                 <div class="_hide" @click="flatenHead">
                     <a class="icon-a">
-                        <svg t="1712418693646" class="icon click-hide" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2573" width="200" height="200">
+                        <svg t="1712418693646" class="icon" v-show="headFold" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2573" width="200" height="200">
                             <path d="M853.333 247.467H170.667c-17.067 0-34.134-17.067-34.134-34.134S153.6 179.2 170.667 179.2h682.666c17.067 0 34.134 17.067 34.134 34.133s-17.067 34.134-34.134 34.134z m0 298.666H170.667c-17.067 0-34.134-17.066-34.134-34.133s17.067-34.133 34.134-34.133h682.666c17.067 0 34.134 17.066 34.134 34.133s-17.067 34.133-34.134 34.133z m0 298.667H170.667c-17.067 0-34.134-17.067-34.134-34.133s17.067-34.134 34.134-34.134h682.666c17.067 0 34.134 17.067 34.134 34.134S870.4 844.8 853.333 844.8z" fill="#ffffff" p-id="2574"></path>
                         </svg>
-                        <svg t="1712418934948" class="icon click-_hide" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2779" width="200" height="200">
+                        <svg t="1712418934948" class="icon" v-show="!headFold" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2779" width="200" height="200">
                             <path d="M213.333 887.467c-17.066 0-34.133-17.067-34.133-34.134V170.667c0-17.067 17.067-34.134 34.133-34.134s34.134 17.067 34.134 34.134v682.666c0 17.067-17.067 34.134-34.134 34.134z m298.667 0c-17.067 0-34.133-17.067-34.133-34.134V170.667c0-17.067 17.066-34.134 34.133-34.134s34.133 17.067 34.133 34.134v682.666c0 17.067-17.066 34.134-34.133 34.134z m298.667 0c-17.067 0-34.134-17.067-34.134-34.134V170.667c0-17.067 17.067-34.134 34.134-34.134S844.8 153.6 844.8 170.667v682.666c0 17.067-17.067 34.134-34.133 34.134z" fill="#ffffff" p-id="2780"></path>
                         </svg>
                     </a>
@@ -70,32 +81,25 @@ export default {
         let window_message = get_window_messages()
         return {
             wmsg: window_message,
-            headFold : true,
-            loginFold : true,
+            headFold: true,
+            loginFold: false,
         }
     },
 
     components: {},
     methods: {
-        flatenHead(){
+        flatenHead() {
             // alert("1")
             if (!this.headFold) {
                 document.querySelector('.list').classList.add('head-fold');
-            } 
-            else {
+            } else {
                 document.querySelector('.list').classList.remove('head-fold');
             }
             this.headFold = !this.headFold;
+            this.loginFold = false;
         },
-        flatenLogin(){
-            // alert("1")
-            if (!this.headFold) {
-                document.querySelector('.list').classList.add('head-fold');
-            } 
-            else {
-                document.querySelector('.list').classList.remove('head-fold');
-            }
-            this.headFold = !this.headFold;
+        flatenLogin() {
+            this.loginFold = !this.loginFold;
         }
     }
 
