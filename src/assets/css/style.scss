@@ -3,9 +3,10 @@ $head-fold: true;
 :root {
     --bg1: url("./assets/image/bg1.jpg");
     --bg2: url("./assets/image/bg2.jpg");
-    --left-dis: 175px;
-    --top-dis: 40px;
-    --icon-size : 16px;
+    --left-dis: 200px;
+    --top-dis: 50px;
+    --icon-size : 18px;
+    --font-size : 14px;
     --top-color: #39d3e6;
 }
 
@@ -21,14 +22,12 @@ $head-fold: true;
     background-repeat: no-repeat;
     z-index: -1;
     top: var(--top-dis);
-    left: var(--left-dis);
+    left: 0;
     right: 0;
     bottom: 0;
     display: block;
     box-sizing: border-box;
 }
-
-
 
 @media screen and (max-width: 700px) {
     #bg {
@@ -37,10 +36,6 @@ $head-fold: true;
     }
     #bg-mask {
         left: 0!important;
-    }
-
-    #left {
-        display: none!important;
     }
 
     .hide {
@@ -69,6 +64,13 @@ $head-fold: true;
         // padding: 0;
         height: fit-content!important;
         background-color: var(--top-color);
+        left: 0;
+        transition: left 1s ease;
+        &.profile-fold{
+            left: var(--left-dis);
+            width: auto;
+            transition: left 1s ease;;
+        }
     }
 
     .dropdown {
@@ -88,17 +90,18 @@ $head-fold: true;
 
     .dropdown a svg{
         padding-right: 1%;
+        background-color: transparent;
     }
 }
 
 #bg-mask {
     position: fixed;
     background-size: cover;
-    background-color: rgba(0, 0, 0, 0.428);
+    background-color: rgba(0, 0, 0, 0.228);
     background-position: center center;
     z-index: -1;
     top: var(--top-dis);
-    left: var(--left-dis);
+    left: 0;
     right: 0;
     bottom: 0;
     display: block;
@@ -116,21 +119,54 @@ $head-fold: true;
     box-shadow:  2px 2px rgba(0,0,0,.05), 0px 1px 0 rgba(0,0,0,.05);
 }
 
-#left {
+#left{
     top:var(--top-dis);
     left: 0;
     width: var(--left-dis);
     height: 100%;
     position: fixed;
-    color: palegoldenrod;
     background-color: aliceblue;
     box-shadow:  2px 2px rgba(0,0,0,.05), 0px 1px 0 rgba(0,0,0,.05);
+    transition: width 0.5s ease;
+
+    &.profile-fold {
+        width: 0;
+        transition: width 0.5s ease;
+    }
 }
 
 #nav {
     display: block;
     width: 100%;
     height: 100%;
+}
+
+#nav-left {
+    display: flex;
+    height: 100%;   
+    align-items: center;
+    justify-items: center;
+    float: left!important;
+    padding-left: 10px;
+    .icon-a{
+        &:hover {
+            background-color: #39d3e6; 
+            cursor: pointer;
+        } 
+    };
+    .icon-a svg{
+        &.rotate {
+            transform: rotate(-180deg);
+            transition: transform 0.2s ease;
+        };
+        &.derotate {
+            transform: rotate(0deg);
+            transition: transform 0.2s ease;
+        }
+    }
+    .dropdown {
+        padding-right: 5vw;
+    }
 }
 
 #nav-right {
@@ -151,19 +187,16 @@ $head-fold: true;
     display: flex;
     right: -15px; 
     height: 100%;
-    // padding-left: 10px;
 }
 
-// .list div:nth-last-child(2) a {
-//     padding-right: 10px;
-// }
 
 .dropdown {
     display: flex;
     // margin-right: 1.2em;
-    flex-grow: 1;
+    // flex-grow: 1;
     align-items: center;
     justify-items: center;
+    height: 100%;
 }
 
 .text {
@@ -171,17 +204,17 @@ $head-fold: true;
     color: #fff;
     white-space: nowrap;
     text-shadow: none;
-    font-size: 13px;
+    font-size: var(--font-size);
     line-height: 3.25;
 }
 
 .icon-a {
     display: flex;
     text-decoration: none;  
-    height: 100%;
+    height: 100%!important;
     place-items: center;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 16px;
+    padding-right: 16px;
     color: var(--top-color); 
 
     &:hover {
@@ -208,49 +241,59 @@ $head-fold: true;
 
 
 #login-tab {
-    display: flex;
+    display: flex;  
     flex-direction: column;
     position: fixed;
     top: var(--top-dis);
     right: 0;
     height: fit-content;
     // width: 30%;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.662);
     padding-bottom: 10px;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    // border-radius: 3px;
+    outline: rgba(148, 156, 243, 0.737) solid 2px;
+    outline-offset: -2px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+
+    div div{
+        display: flex;
+        text-align: left;
+        font-size: var(--font-size);
+        color: #58666e;
+        padding-top: 10px;
+        padding-bottom: 5px;
+        font-family: "Source Sans Pro","Hiragino Sans GB","Microsoft Yahei",SimSun,Helvetica,Arial,Sans-serif;
     
+    }
+
+    button{
+        font-family: "Source Sans Pro","Hiragino Sans GB","Microsoft Yahei",SimSun,Helvetica,Arial,Sans-serif;
+        font-size: var(--font-size);
+        background-color: var(--top-color);
+        border: none;
+        cursor: pointer;
     
+        &:hover {
+            background-color: darken(#39d3e6, 8%); 
+            cursor: pointer;
+        }
+      
+        &:active {
+            background-color: darken(#39d3e6, 10%);
+        }
+    }
+
+    &.login-fold {
+        opacity: 1;
+        transition: opacity 0.5s ease;
+    }
 }
 
 .login-item{
     margin-top: 5px;
-}
-
-#login-tab div div{
-    display: flex;
-    text-align: left;
-    font-size: 10px;
-    color: #58666e;
-    margin-bottom: 5px;
-    font-family: "Source Sans Pro","Hiragino Sans GB","Microsoft Yahei",SimSun,Helvetica,Arial,Sans-serif;
-}
-
-#login-tab button{
-    font-family: "Source Sans Pro","Hiragino Sans GB","Microsoft Yahei",SimSun,Helvetica,Arial,Sans-serif;
-    font-size: 10px;
-    background-color: var(--top-color);
-    border: none;
-    cursor: pointer;
-
-    &:hover {
-        background-color: darken(#39d3e6, 8%); 
-        cursor: pointer;
-    }
-  
-    &:active {
-        background-color: darken(#39d3e6, 10%);
-    }
 }
 
 .btn {
@@ -258,7 +301,7 @@ $head-fold: true;
     padding: 5px 12px;
     margin-bottom: 0;
     color: #fff;
-    font-size: 14px;
+    font-size: var(--font-size);
     font-weight: 400;
     line-height: 1.22857143;
     text-align: center;
@@ -273,16 +316,43 @@ $head-fold: true;
     user-select: none;
     background-image: none;
     border: 1px solid transparent;
+
+    &.login-item {
+        margin-top: 10px;
+        padding-top: 7px;
+        padding-bottom: 7px;
+        background-color: #39d2e600;
+        &:active {
+            background-color: darken(#39d2e62d, 10%);
+        }
     
-    &:active {
-        background-color: darken(#39d3e6, 10%);
+        &:focus {
+            outline: none;
+        }
     }
 
-    &:focus {
-        outline: none;
-    }
 }
+
 
 div {
     user-select: none;
+}
+
+input {
+    font-family: "Source Sans Pro","Hiragino Sans GB","Microsoft Yahei",SimSun,Helvetica,Arial,Sans-serif
+}
+
+input.login-input{
+    padding-bottom: 5px;
+    padding-top: 5px;
+    text-align: left;
+    width: 250px;
+    height: 2.5vh;
+    // &::placeholder {
+    //     padding-left: 8px; 
+    // }
+    text-indent: 8px;
+    &:focus{
+        outline: #66ccff solid 1px;
+    }
 }

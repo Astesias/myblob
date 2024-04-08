@@ -3,6 +3,18 @@
 <div id="bg-mask"></div>
 <div id="head">
     <div id="nav">
+        <div id="nav-left">
+            <div class="dropdown">
+                <a href="#" class="icon-a" @click="flatenProfile">
+                    <svg t="1712563166629" class="icon icon-rotate" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="17065" width="200" height="200">
+                        <path d="M937.387 488.107L772.267 372.48c-12.8-9.387-30.294-6.827-40.107 5.547-3.84 4.693-5.547 10.666-5.547 17.066v233.814c0 22.613 25.6 36.693 45.654 22.613l165.546-115.627c14.08-14.08 14.08-36.693-0.426-47.786z m-23.04-274.774H129.28c-18.773 0-34.133-15.36-34.133-34.133s15.36-34.133 34.133-34.133h785.067c18.773 0 34.133 15.36 34.133 34.133s-14.933 34.133-34.133 34.133z m0 665.6H129.28c-18.773 0-34.133-15.36-34.133-34.133s15.36-34.133 34.133-34.133h785.067c18.773 0 34.133 15.36 34.133 34.133s-14.933 34.133-34.133 34.133zM624.213 435.2H129.28c-18.773 0-34.133-15.36-34.133-34.133s15.36-34.134 34.133-34.134h494.933c18.774 0 34.134 15.36 34.134 34.134S643.413 435.2 624.213 435.2z m0.427 221.867H129.28c-18.773 0-34.133-15.36-34.133-34.134s15.36-34.133 34.133-34.133h495.36c18.773 0 34.133 15.36 34.133 34.133v0.427c-0.426 18.347-15.36 33.707-34.133 33.707z" fill="#ffffff" p-id="17066"></path>
+                    </svg>
+                </a>
+            </div>
+            <div id="search">
+                <input type="text">
+            </div>
+        </div>
         <div id="nav-right">
             <div class="list head-fold">
                 <div class="dropdown">
@@ -37,14 +49,14 @@
                         </div>
                     </a>
                 </div>
-                <div id="login-tab" v-show="loginFold">
+                <div id="login-tab" class="logintmp login-Fold">
                     <div class="login-item">
-                        <div>邮箱/用户名</div>
-                        <input type="text">
+                        <div>用户名/邮箱</div>
+                        <input type="text" class="login-input" placeholder="用户名或电子邮箱">
                     </div>
                     <div class="login-item">
-                        <div >密码</div>
-                        <input type="text">
+                        <div>密码</div>
+                        <input type="text" class="login-input" placeholder="密码">
                     </div>
                     <button class="login-item btn">登录</button>
                 </div>
@@ -65,7 +77,7 @@
     </div>
 
 </div>
-<div id="left" class="hide">
+<div id="left">
 </div>
 </template>
 
@@ -83,25 +95,49 @@ export default {
             wmsg: window_message,
             headFold: true,
             loginFold: false,
+            profileFold: false,
         }
     },
 
     components: {},
     methods: {
         flatenHead() {
-            // alert("1")
             if (!this.headFold) {
                 document.querySelector('.list').classList.add('head-fold');
             } else {
                 document.querySelector('.list').classList.remove('head-fold');
             }
             this.headFold = !this.headFold;
-            this.loginFold = false;
+            this.loginFold = true;
+            this.flatenLogin();
         },
         flatenLogin() {
+            if (!this.loginFold) {
+                document.querySelector('.logintmp').classList.add('login-fold');
+            } else {
+                document.querySelector('.logintmp').classList.remove('login-fold');
+            }
             this.loginFold = !this.loginFold;
-        }
-    }
+        },
+        flatenProfile() {
+            if (!this.profileFold) {
+                document.querySelector('#left').classList.add('profile-fold');
+                document.querySelector('.icon-rotate').classList.add('rotate');
+                document.querySelector('.icon-rotate').classList.remove('derotate');
+
+                document.querySelector('.list').classList.remove('profile-fold');
+
+            } else {
+                document.querySelector('#left.profile-fold').classList.remove('profile-fold');
+                document.querySelector('.icon-rotate').classList.remove('rotate');
+                document.querySelector('.icon-rotate').classList.add('derotate');
+
+                document.querySelector('.list').classList.add('profile-fold');
+
+            }
+            this.profileFold = !this.profileFold;
+        },
+    },
 
 }
 </script>
