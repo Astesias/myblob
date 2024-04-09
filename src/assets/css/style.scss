@@ -4,10 +4,12 @@ $head-fold: true;
     --bg1: url("./assets/image/bg1.jpg");
     --bg2: url("./assets/image/bg2.jpg");
     --left-dis: 200px;
+    --left-width-min: 80px;
     --top-dis: 50px;
     --icon-size : 18px;
     --font-size : 14px;
     --top-color: #39d3e6;
+    --animation-time: 0.5s;
 }
 
 ._hide , .click-_hide{
@@ -38,22 +40,14 @@ $head-fold: true;
         left: 0!important;
     }
 
+    ._hide {
+        display: inherit!important;
+    }
+
     .hide {
         display: none!important;
     }
 
-    ._hide {
-        display: inline-block!important;
-    }
-
-    .click_hide {
-        display: none;
-    }
-
-    .list.head-fold {
-        display: none!important;
-    }
-    
     .list {
         flex-direction:column;
         justify-items: flex-start;
@@ -64,12 +58,15 @@ $head-fold: true;
         // padding: 0;
         height: fit-content!important;
         background-color: var(--top-color);
-        left: 0;
-        transition: left 1s ease;
+        left: var(--left-width-min);
+        transition: left var(--animation-time) ease;
         &.profile-fold{
             left: var(--left-dis);
             width: auto;
-            transition: left 1s ease;;
+            transition: left var(--animation-time) ease;;
+        }
+        &.head-fold {
+            display: none!important;
         }
     }
 
@@ -78,20 +75,17 @@ $head-fold: true;
         height: 5vh;
         flex-grow: unset!important;
         box-shadow: 0 -1px 0 rgba(0,0,0,.1);
+        a {
+            width: 100%;
+            height: 100%;
+            // padding-left: 10px;
+            svg{
+                // padding-right: 1%;
+                background-color: transparent;
+            }
+        }
     }
 
-    .dropdown a {
-        // padding-top: 20px;
-        // padding-bottom: 20px;
-        width: 100%;
-        height: 100%;
-        padding-left: 3%;
-    }
-
-    .dropdown a svg{
-        padding-right: 1%;
-        background-color: transparent;
-    }
 }
 
 #bg-mask {
@@ -120,6 +114,7 @@ $head-fold: true;
 }
 
 #left{
+    display: flex;
     top:var(--top-dis);
     left: 0;
     width: var(--left-dis);
@@ -127,11 +122,18 @@ $head-fold: true;
     position: fixed;
     background-color: aliceblue;
     box-shadow:  2px 2px rgba(0,0,0,.05), 0px 1px 0 rgba(0,0,0,.05);
-    transition: width 0.5s ease;
+    transition: width var(--animation-time) ease;
 
     &.profile-fold {
-        width: 0;
-        transition: width 0.5s ease;
+        width: var(--left-width-min);
+        transition: width var(--animation-time) ease;
+        img {
+            width: 50px;
+            height: 50px;
+            // border-radius: 0px;
+            transition: all 0.2s linear;
+            animation: rotate-beyond 1s forwards;
+        }
     }
 }
 
@@ -157,15 +159,15 @@ $head-fold: true;
     .icon-a svg{
         &.rotate {
             transform: rotate(-180deg);
-            transition: transform 0.2s ease;
+            transition: transform var(--animation-time) ease;
         };
         &.derotate {
             transform: rotate(0deg);
-            transition: transform 0.2s ease;
+            transition: transform var(--animation-time) ease;
         }
     }
     .dropdown {
-        padding-right: 5vw;
+        padding-right: 5px;
     }
 }
 
@@ -225,6 +227,8 @@ $head-fold: true;
     &:active {
         background-color: darken(#39d3e6, 10%);
     }
+
+    
 }
 
 .caret {
@@ -255,8 +259,8 @@ $head-fold: true;
     // border-radius: 3px;
     outline: rgba(148, 156, 243, 0.737) solid 2px;
     outline-offset: -2px;
-    opacity: 0;
-    transition: opacity 0.5s ease;
+    opacity: 1;
+    transition: opacity var(--animation-time) ease;
 
     div div{
         display: flex;
@@ -287,8 +291,8 @@ $head-fold: true;
     }
 
     &.login-fold {
-        opacity: 1;
-        transition: opacity 0.5s ease;
+        opacity: 0!important;
+        transition: opacity var(--animation-time) ease;
     }
 }
 
@@ -339,7 +343,14 @@ div {
 }
 
 input {
-    font-family: "Source Sans Pro","Hiragino Sans GB","Microsoft Yahei",SimSun,Helvetica,Arial,Sans-serif
+    font-family: "Source Sans Pro","Hiragino Sans GB","Microsoft Yahei",SimSun,Helvetica,Arial,Sans-serif;
+    text-indent: 8px;
+    &:focus{
+        outline: #66ccff solid 1px;
+    }
+    &::placeholder {
+        font-size: 10px;
+    }
 }
 
 input.login-input{
@@ -352,7 +363,85 @@ input.login-input{
     //     padding-left: 8px; 
     // }
     text-indent: 8px;
-    &:focus{
-        outline: #66ccff solid 1px;
+
+}
+
+#search {
+    display: flex;
+    height: 50%;
+
+    input {
+        border-radius: 20px 0px 0px 20px;
+        border: 2px #66ccff;
+        outline: none;
+        padding-bottom: 8px;
+        padding-top: 8px;
+        font-size: 6px;
+        background-color: #edf1f2;
+        &:hover{
+            background-color: #fff;
+        }
+        &:active{
+            background-color: #fff;
+        }
+    }
+    svg {
+        height: 100%;
+        justify-items: center;
+        align-items: center;
+        background-color: white;
+        border-radius: 0px 20px 20px 0px;
+        padding-right: 5px;
+        background-color: #edf1f2;
+        &:hover{
+            background-color: #fff;
+        }
+        &:active{
+            background-color: #fff;
+        }
+    }
+    .icon-a {
+        padding-left: unset;
+
+    }
+}
+
+// .pathx {
+//     stroke: rgb(204, 0, 255);
+//     stroke-width: 10px;
+//     stroke-dasharray: var(--l);
+//     stroke-dashoffset: var(--l);
+//     animation: animate1 2s forwards;
+//     fill: white;
+//     stroke-linecap: round;
+// }
+
+#profile-img-container {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    img {
+        height: 100px;
+        width: 100px;
+        overflow: hidden;
+        border-radius: 50px;
+        transition: all 0.2s linear;
+        // animation: rotate-beyond 1s forwards;
+        &:hover {
+            transform: rotateZ(-45deg);
+            transition: transform 0.5s ease-out;
+        }
+    }
+    margin-top: 10%;
+    margin-left: auto;  // 上右下左  
+    margin-right: auto;
+}
+
+@keyframes rotate-beyond{
+    90% {
+        transform: rotateZ(390deg);
+    }
+    100% {
+        transform: rotateZ(360deg);
     }
 }
