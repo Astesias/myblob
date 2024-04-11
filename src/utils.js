@@ -29,10 +29,21 @@ export function get_window_messages () {
   return s
 }
 
-export function set_svg_path_len(selecter){
-  const paths = document.querySelectorAll(selecter);
-  paths.forEach((path) => {
-    const len = path.getTotalLength()+1;
-    path.style.setProperty('--l',len); 
+export function set_svg_path_len (selecter) {
+  const paths = document.querySelectorAll(selecter)
+  paths.forEach(path => {
+    const len = path.getTotalLength() + 1
+    path.style.setProperty('--l', len)
+  })
+}
+
+export function dqc(selector, className) {
+  let dqList = document.querySelectorAll(selector);
+  dqList.forEach(element => {
+    if (element.classList.contains(className)) {
+      element.classList.remove(className);
+    } else {
+      element.classList.add(className);
+    }
   });
 }

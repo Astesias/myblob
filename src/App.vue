@@ -101,7 +101,7 @@
 
 <script>
 import {
-    get_window_messages,
+    get_window_messages,dqc
 } from './utils';
 
 export default {
@@ -121,38 +121,51 @@ export default {
     methods: {
         flatenHead() {
             if (!this.headFold) {
-                document.querySelector('.list').classList.add('head-fold');
+                // document.querySelector('.list').classList.add('head-fold');
+                dqc('.list','head-fold');
             } else {
-                document.querySelector('.list').classList.remove('head-fold');
+                // document.querySelector('.list').classList.remove('head-fold');
+                dqc('.list','head-fold');
             }
             this.headFold = !this.headFold;
-            this.loginFold = true;
+            // this.loginFold = true;
             this.flatenLogin();
         },
         flatenLogin() {
             if (!this.loginFold) {
-                document.querySelector('.logintmp').classList.add('login-fold');
+                dqc('.logintmp','login-fold');
+                // document.querySelector('.logintmp').classList.add('login-fold');
             } else {
-                document.querySelector('.logintmp').classList.remove('login-fold');
+                dqc('.logintmp','login-fold');
+                // document.querySelector('.logintmp').classList.remove('login-fold');
             }
             this.loginFold = !this.loginFold;
         },
         flatenProfile() {
             if (!this.profileFold) {
-                document.querySelector('#left').classList.add('profile-fold');
-                document.querySelector('.icon-rotate').classList.add('rotate');
-                document.querySelector('.icon-rotate').classList.remove('derotate');
+                // document.querySelector('#left').classList.add('profile-fold');
+                // document.querySelector('.icon-rotate').classList.add('rotate');
+                // document.querySelector('.icon-rotate').classList.remove('derotate');
 
-                document.querySelector('.list').classList.remove('profile-fold');
-                document.querySelector('.title-icon').classList.remove('profile-fold');
+                // document.querySelector('.list').classList.remove('profile-fold');
+
+                dqc('#left','profile-fold');
+                dqc('.icon-rotate','rotate');
+                dqc('.icon-rotate','derotate');
+                dqc('.list','profile-fold');
 
             } else {
-                document.querySelector('#left.profile-fold').classList.remove('profile-fold');
-                document.querySelector('.icon-rotate').classList.remove('rotate');
-                document.querySelector('.icon-rotate').classList.add('derotate');
+                // document.querySelector('#left.profile-fold').classList.remove('profile-fold');
+                // document.querySelector('.icon-rotate').classList.remove('rotate');
+                // document.querySelector('.icon-rotate').classList.add('derotate');
 
-                document.querySelector('.list').classList.add('profile-fold');
-                document.querySelector('.title-icon').classList.add('profile-fold');
+                // document.querySelector('.list').classList.add('profile-fold');
+                // document.querySelector('.title-icon').classList.add('profile-fold');
+
+                dqc('#left','profile-fold');
+                dqc('.icon-rotate','rotate');
+                dqc('.icon-rotate','derotate');
+                dqc('.list','profile-fold');
 
             }
             this.profileFold = !this.profileFold;

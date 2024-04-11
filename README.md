@@ -51,6 +51,7 @@ transition精通（不是），css这东西美化起来没完没了了
 
 * [day4](daylog/day4.md)
 * [day5](daylog/day5.md)
+* [day6](daylog/day6.md)
 
 
 
