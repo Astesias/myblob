@@ -122,8 +122,9 @@ $head-fold: true;
     top:var(--top-dis);
     right: 0;
     width: var(--left-dis); 
-    background-color: #f2e31328;
+    background-color: #f2e31300;
     height: 100%;
+    z-index: -1;
 }
 
 #left{
@@ -383,6 +384,10 @@ $head-fold: true;
 }
 
 
+.login-item {
+    z-index: 9999;
+}
+
 #login-tab {
     display: flex;  
     flex-direction: column;
@@ -400,7 +405,6 @@ $head-fold: true;
     outline-offset: -2px;
     opacity: 1;
     transition: opacity var(--animation-time) ease;
-    z-index: 9999; 
 
     div div{
         display: flex;
@@ -625,19 +629,23 @@ input.login-input{
     &::-webkit-scrollbar {
         width: 10px;
         padding-top: 10px;
+        z-index: -1;
     }
     &::-webkit-scrollbar-button {
         height: 0px;
+        z-index: -1;
     }
 
     &::-webkit-scrollbar-track {
-        background-color: #ebeceb;
+        background-color: #ebeceb00;
         border: 1px solid #ccc;
+        z-index: -1;
       }
 
     &::-webkit-scrollbar-thumb {
         background: linear-gradient(to bottom, rgba(0, 255, 179, 0.427) ,rgba(255, 255, 79, 0.395));
         // border-radius: 5px;
+        z-index: -1;
       }
 }
 
@@ -664,6 +672,7 @@ input.login-input{
         width: 10px;
         padding-top: 10px;
     }
+    z-index: -1;
 }
 
 .article-container {
@@ -674,7 +683,7 @@ input.login-input{
     margin-top: 5vh;
     height: 130%;
     width: 100%;
-    // background-color: #52b72347;
+    z-index: -1;
 }
 
 .article-block {
@@ -685,17 +694,18 @@ input.login-input{
     overflow: hidden;
     margin-left: auto;
     margin-right: auto;
+    z-index: -1;
     img {
-        max-width: 60%;
-        min-height: 120px;
-        max-height: 200px;
-        margin-left: auto;
-        margin-right: auto;
-        object-fit: cover;
-        object-position: 0% 95%; 
+        overflow: hidden;
+        width: 100%;
+        min-height: 140px;
+        max-height: 260px;
+        margin-left: 10%;
+        margin-right: 10%;
+        object-fit:cover;
         transition: transform 0.3s ease;
         &:hover {
-            transform: scale(1.2); 
+            transform: scale(1.05); 
         }
     }
 }
@@ -707,7 +717,7 @@ input.login-input{
     left: 0;
     width: 100%; 
     height: 100%;
-    background-color: rgba(255, 0, 0, 0.5); 
+    background-color: rgba(0, 0, 0, 0.331); 
 }
 
 
