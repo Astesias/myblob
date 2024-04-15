@@ -1,41 +1,38 @@
-$head-fold: true;
+@import "./base.scss";
 
-:root {
-    --bg1: url("./assets/image/bg1.jpg");
-    --bg2: url("./assets/image/bg2.jpg");
-    --profile: url("./assets/image/profile.jpg");
-    --left-dis: 180px;
-    --left-width-min: 54px;
-    --top-dis: 50px;
-    --icon-size : 18px;
-    --font-size : 14px;
-    --top-color: #39d3e6;
-    --animation-time: 0.5s;
-    --font-family : "Source Sans Pro","Hiragino Sans GB","Microsoft Yahei",SimSun,Helvetica,Arial,Sans-serif;
-}
 
-._hide , .click-_hide{
-    display: none!important;
-}
+
+
+
 
 #bg {
     position: fixed;
     background-size: cover;
-    background-image: var(--bg1);
+    background-image: $bg1;
     background-position: center center;
     background-repeat: no-repeat;
-    z-index: -1;
-    top: var(--top-dis);
+    top: $top-dis;
     left: 0;
     right: 0;
     bottom: 0;
     display: block;
     box-sizing: border-box;
+    z-index: -1;
+    &::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: #00000021;
+        opacity: 1;
+        transition: opacity 0.5s ease; 
+    }
+    // 使用:hover::before而不是::before:hover
 }
 
-@media screen and (max-width: 700px) {
+@media (max-width: 700px) {
     #bg {
-        background-image: var(--bg2);
+        background-image: $bg2;
         left: 0px;
     }
     #bg-mask {
@@ -54,18 +51,18 @@ $head-fold: true;
         flex-direction:column;
         justify-items: flex-start;
         position:fixed;
-        top: var(--top-dis);
+        top: $top-dis;
         width: 100%;
         right: 0!important;
         // padding: 0;
         height: fit-content!important;
-        background-color: var(--top-color);
-        left: var(--left-width-min);
-        transition: left var(--animation-time) ease;
+        background-color: $top-color;
+        left: $left-width-min;
+        transition: left $animation-time ease;
         &.profile-fold{
-            left: var(--left-dis);
+            left: $left-dis;
             width: auto;
-            transition: left var(--animation-time) ease;;
+            transition: left $animation-time ease;;
         }
         &.head-fold {
             display: none!important;
@@ -86,32 +83,21 @@ $head-fold: true;
                 background-color: transparent;
             }
         }
+        .icon-a {
+            width: 100%;
+        }
     }
 
-}
-
-#bg-mask {
-    position: fixed;
-    background-size: cover;
-    background-color: rgba(0, 0, 0, 0.228);
-    background-position: center center;
-    z-index: -1;
-    top: var(--top-dis);
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: block;
-    box-sizing: border-box;
 }
 
 #head {
     top:0;
     left: 0;
     right: 0;
-    height: var(--top-dis);
+    height: $top-dis;
     position: fixed;
     color: aliceblue;
-    background-color: var(--top-color);
+    background-color: $top-color;
     box-shadow:  2px 2px rgba(0,0,0,.05), 0px 1px 0 rgba(0,0,0,.05);
 }
 
@@ -119,9 +105,9 @@ $head-fold: true;
     display: flex;
     position: fixed;
     flex-direction: column;
-    top:var(--top-dis);
+    top:$top-dis;
     right: 0;
-    width: var(--left-dis); 
+    width: $left-dis; 
     background-color: #f2e31300;
     height: 100%;
     z-index: -1;
@@ -130,34 +116,34 @@ $head-fold: true;
 #left{
     display: flex;
     flex-direction: column;
-    top:var(--top-dis);
+    top:$top-dis;
     left: 0;
-    width: var(--left-dis);
+    width: $left-dis;
     // padding-right: 10%;
     height: 100%;
     position: fixed;
     background-color: aliceblue;
     
     box-shadow:  2px 2px rgba(0,0,0,.05), 0px 1px 0 rgba(0,0,0,.05);
-    transition: width var(--animation-time) ease;
+    transition: width $animation-time ease;
 
     #left-container {
         width: 100%;
         height: 100%;
     }
     &.profile-fold {
-        width: var(--left-width-min);
-        transition: width var(--animation-time) ease;
+        width: $left-width-min;
+        transition: width $animation-time ease;
         img {
-            width: calc(var(--left-width-min)/2);
-            height: calc(var(--left-width-min)/2);
+            width: calc(#{$left-width-min}/2);
+            height: calc(#{$left-width-min}/2);
             // border-radius: 0px;
             transition: all 0.2s linear;
             animation: rotate-beyond 1s forwards;
         }
         #profile_name{
             writing-mode: vertical-rl;
-            animation: colors var(--animation-time) forwards;
+            animation: colors $animation-time forwards;
             padding-bottom: 6px;
         }
         #left-block:first {
@@ -171,8 +157,8 @@ $head-fold: true;
             justify-content: center;
         }
         svg {
-            padding-top: calc(var(--left-width-min)/3);
-            padding-bottom: calc(var(--left-width-min)/3);
+            padding-top: calc( #{$left-width-min}/3 );
+            padding-bottom: calc( #{$left-width-min}/3 );
             padding-left: 0!important;
         }
         &::-webkit-scrollbar {
@@ -220,10 +206,10 @@ $head-fold: true;
         }
 
         .block-item-name {
-            font-size: 13px;
+            font-size: 14px;
             color: #58666e; // #a0a0efd4;
-            font-family: var(--font-family);
-            padding-left: 10px;
+            font-family: $font-family;
+            padding-left: 18px;
             margin-bottom: 1px;
             white-space: nowarp;
             overflow: hidden;
@@ -233,7 +219,7 @@ $head-fold: true;
 
     #profile_name {
         color: rgba(0, 0, 0, 0.543);
-        font-family: var(--font-family);
+        font-family: $font-family;
         margin-left: auto;
         margin-right: auto;
         font-weight: 700;
@@ -271,13 +257,13 @@ $head-fold: true;
         svg{
             &.rotate {
                 transform: rotateY(-180deg);
-                transition: all var(--animation-time) ease,
-                            transform var(--animation-time) ease;
+                transition: all $animation-time ease,
+                            transform $animation-time ease;
             };
             &.derotate {
                 transform: rotateY(0deg);
-                transition: all var(--animation-time) ease,
-                            transform var(--animation-time) ease;
+                transition: all $animation-time ease,
+                            transform $animation-time ease;
             }
         }
     }   
@@ -293,11 +279,11 @@ $head-fold: true;
 
 #nav-left {
     display: flex;
-    width: calc(var(--left-dis));
+    width: $left-dis;
     left: 0;
     justify-content: space-evenly;
     &.profile-fold{
-        width: calc(var(--left-width-min))!important  ;
+        width: $left-width-min!important  ;
     }
     .icon-a{
         &:hover{
@@ -307,12 +293,12 @@ $head-fold: true;
             background-color: inherit;
         }
     }
-    transition: width var(--animation-time) ease;
+    transition: width $animation-time ease;
 
     #brief {
         white-space: nowrap;
         overflow: hidden;
-        font-family: var(--font-family);
+        font-family: $font-family;
         padding-right: 10px;
     }
 }
@@ -320,8 +306,8 @@ $head-fold: true;
 
 .icon {
     place-items: center;
-    height: var(--icon-size);
-    width:  var(--icon-size);
+    height: $icon-size;
+    width:  $icon-size;
 }
 
 .list ,.list2{
@@ -345,9 +331,10 @@ $head-fold: true;
     color: #fff;
     white-space: nowrap;
     text-shadow: none;
-    font-size: var(--font-size);
-    font-family: var(--font-family);
+    font-size: $font-size;
+    font-family: $font-family;
     line-height: 3.25;
+    padding-left: 3px;
 }
 
 .icon-a {
@@ -357,7 +344,7 @@ $head-fold: true;
     place-items: center;
     padding-left: 16px;
     padding-right: 16px;
-    color: var(--top-color); 
+    color: $top-color; 
 
     &:hover {
         background-color: darken(#39d3e6, 8%); 
@@ -392,7 +379,7 @@ $head-fold: true;
     display: flex;  
     flex-direction: column;
     position: fixed;
-    top: var(--top-dis);
+    top: $top-dis;
     right: 0;
     height: fit-content;
     // width: 30%;
@@ -404,23 +391,23 @@ $head-fold: true;
     outline: rgba(148, 156, 243, 0.737) solid 2px;
     outline-offset: -2px;
     opacity: 1;
-    transition: opacity var(--animation-time) ease;
+    transition: opacity $animation-time ease;
 
     div div{
         display: flex;
         text-align: left;
-        font-size: var(--font-size);
+        font-size: $font-size;
         color: #58666e;
         padding-top: 10px;
         padding-bottom: 5px;
-        font-family: var(--font-family);
+        font-family: $font-family;
     
     }
 
     button{
-        font-family: var(--font-family);
-        font-size: var(--font-size);
-        background-color: var(--top-color);
+        font-family: $font-family;
+        font-size: $font-size;
+        background-color: $top-color;
         border: none;
         cursor: pointer;
     
@@ -438,6 +425,7 @@ $head-fold: true;
     &.login-fold {
         opacity: 0!important;
         overflow: hidden;
+        z-index: -1;
         * {
             pointer-events: none;  
         }
@@ -456,7 +444,7 @@ $head-fold: true;
     padding: 5px 12px;
     margin-bottom: 0;
     color: #fff;
-    font-size: var(--font-size);
+    font-size: $font-size;
     font-weight: 400;
     line-height: 1.22857143;
     text-align: center;
@@ -494,7 +482,7 @@ div {
 }
 
 input {
-    font-family: var(--font-family);
+    font-family: $font-family;
     text-indent: 8px;
     &:focus{
         outline: #66ccff solid 1px;
@@ -557,30 +545,20 @@ input.login-input{
     }
 }
 
-// .pathx {
-//     stroke: rgb(204, 0, 255);
-//     stroke-width: 10px;
-//     stroke-dasharray: var(--l);
-//     stroke-dashoffset: var(--l);
-//     animation: animate1 2s forwards;
-//     fill: white;
-//     stroke-linecap: round;
-// }
-
 #profile-img-container {
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
     img {
-        height: calc( var(--left-dis) * 7 /14 );
-        width: calc( var(--left-dis) * 7 /14 );
+        height: calc( #{$left-dis} * 7 /14 );
+        width: calc( #{$left-dis} * 7 /14 );
         overflow: hidden;
-        border-radius: calc( var(--left-dis) * 7 /14 );
+        border-radius: calc( #{$left-dis} * 7 / 14 );
         transition: all 0.2s linear;
         // animation: rotate-beyond 1s forwards;
         &:hover {
             transform: rotateZ(-45deg);
-            transition: transform var(--animation-time) ease-out;
+            transition: transform $animation-time ease-out;
         }
     }
     transform: rotateZ(0deg);
@@ -654,23 +632,27 @@ input.login-input{
     display: flex;
     position:fixed;
     overflow-y: scroll;
-    left: var(--left-dis);
-    top: var(--top-dis);
-    right: var(--left-dis);
+    left: $left-dis;
+    top: $top-dis;
+    right: $right-dis;
+    // @extend ._base_right_item;
     height: 200%;
     background-color: #ffcccc40;
-    transition: left var(--animation-time) cubic-bezier(0.64, 1.48, 0.58, 1);
+    transition: left $animation-time cubic-bezier(0.64, 1.48, 0.58, 1);
     &.profile-fold {
-        left: var(--left-width-min)!important;
-        transition: left var(--animation-time) cubic-bezier(0.64, 1.48, 0.58, 1);
+        left: $left-width-min!important;
+        transition: left $animation-time cubic-bezier(0.64, 1.48, 0.58, 1);
     }
     &::-webkit-scrollbar-thumb {
         background: linear-gradient(to bottom, rgba(63, 71, 214, 0.427) ,#000);
         // border-radius: 5px;
       }
     &::-webkit-scrollbar {
+        position: absolute;
         width: 10px;
         padding-top: 10px;
+        right: 0;
+        //todo 
     }
     z-index: -1;
 }
@@ -704,6 +686,7 @@ input.login-input{
         margin-right: 10%;
         object-fit:cover;
         transition: transform 0.3s ease;
+        background-position: 20px 30px; /* 设置背景图片偏移量 */
         &:hover {
             transform: scale(1.05); 
         }
@@ -720,4 +703,6 @@ input.login-input{
     background-color: rgba(0, 0, 0, 0.331); 
 }
 
-
+// .non-draggable-element {
+//     user-drag: none; /* 禁止用户拖拽元素 */
+// }

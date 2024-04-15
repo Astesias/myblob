@@ -1,0 +1,96 @@
+$bg1: url("./assets/image/bg1.jpg");
+$bg2: url("./assets/image/bg2.jpg");
+$profile: url("./assets/image/profile.jpg");
+
+$left-dis: 200px;
+$left-dis-fold: 54px;
+$left-width-min: 54px;
+$right-dis: 180px!default;
+$top-dis: 50px;
+$foot-dis: 50px;
+
+$icon-size : 18px;
+$font-size : 14px;
+
+$animation-time: 0.5s;
+
+$top-color: #39d3e6;
+$font-family : "Source Sans Pro","Hiragino Sans GB","Microsoft Yahei",SimSun,Helvetica,Arial,Sans-serif;
+
+$width-media1: 1000px;
+$width-media2: 750px;
+
+// import
+._hide {
+    display: none!important;
+}
+
+
+//media 
+@media (max-width: $width-media1) {
+    
+    // left
+    ._left_item {
+        width: $left-dis!important;
+    }
+    ._left_item_fold {
+        width: $left-width-min!important;
+    }
+    ._left_item_hide {
+        width: 0!important;
+    }
+    ._base_left_item {
+        left: $left-dis!important;
+    }
+    ._base_left_item_fold {
+        left: $left-width-min!important;
+    }
+    ._base_left_item_hide {
+        left: 0!important;
+    }
+
+    // top
+    .top_item {
+        height: $top-dis;
+    }
+    ._base_top_item {
+        top: $top-dis!important;
+    }
+
+    // right
+    ._right_item {
+        width: $right-dis!important;
+    }
+    ._right_item_hide {
+        width: 0!important;
+    }
+
+    ._base_right_item {
+        right: $right-dis!important;
+    }
+    ._base_right_item_hide {
+        right: 0!important;
+    }
+
+    // foot
+    ._foot_item {
+        height: $foot-dis;
+    }
+    ._base_foot_item {
+        bottom: $foot-dis!important;
+    }
+    .media1-hide {
+        display: none!important;
+    }
+    .dropdown div.text {
+        display: none!important;
+    }
+    ._base_right {
+        @extend ._base_right_item_hide;
+    }
+};
+@media (max-width: $width-media2) {
+    .media2-hide {
+        display: none!important;
+    }
+};
