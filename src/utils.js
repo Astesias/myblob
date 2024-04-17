@@ -65,3 +65,21 @@ export function dqc_ad(selector, className) {
     }
   });
 }
+
+export function dqc_switch(selector, className, allclass) {
+  let dqList = document.querySelectorAll(selector);
+  dqList.forEach(
+    element => {
+      element.classList.forEach(
+        classname => {
+          if(allclass.includes(classname)){
+            element.classList.remove(classname);
+          }
+        }
+      );
+      element.classList.add(className);
+    }
+  )
+
+
+}

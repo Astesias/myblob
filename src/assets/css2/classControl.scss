@@ -25,6 +25,10 @@ $width-media3: 450px;
 $svg-color1: linear-glinear-gradient(to bottom, rgba(0, 255, 179, 0.427) ,rgba(255, 255, 79, 0.395));
 $svg-color2: #66ccff;
 
+
+%hide {
+    display: none!important;
+}
 // left
 %left_item {
     width: $left-dis!important;
@@ -49,7 +53,7 @@ $svg-color2: #66ccff;
 }
 
 // top
-%_top_item {
+%top_item {
     height: $top-dis;
 }
 %base_top_item {
@@ -79,72 +83,54 @@ $svg-color2: #66ccff;
     bottom: $foot-dis!important;
 }
 
-@media (max-width: $width-media1) {
+// media
+%base_media {
 
-    // import
-    ._hide {
-        display: none!important;
+    .left {
+        @extend %left_item;
     }
-    .base_right_item_hide {
-        right: 0!important;
+    .left-fold {
+        @extend %left_item_fold;
     }
-    .base_left_item {
-        left: $left-dis!important;
+    .left-hide {
+        @extend %left_item_hide;
     }
-
-    // media 
-    .media1-hide {
-        @extend ._hide;
+    .base-left {
+        @extend %base_left_item;
     }
-    .dropdown div.text {
-        @extend ._hide;
+    .base-left-fold {
+        @extend %base_left_item_fold;
     }
-
-    // final
-    ._base_right {
-        @extend .base_right_item_hide;
-    }
-    ._base_left {
-        @extend .base_left_item;
-    }
-};
-
-@media (max-width: $width-media2) {
-
-    .base_left_item_fold {
-        left: $left-width-min!important;
+    .base-left-hide {
+        @extend %base_left_item_hide;
     }
 
-    .media2-hide {
-        display: none!important;
+    .right {
+        @extend %right_item;
+    }
+    .right-hide {
+        @extend %right_item_hide;
+    }
+    .base-right {
+        @extend %base_right_item;
+    }
+    .base-right-hide {
+        @extend %right_item_hide;
+    }
+    
+    .top {
+        @extend %top_item;
+    }
+    .base-top {
+        @extend %base_top_item;
     }
 
-    // final
-    ._base_left {
-        @extend .base_left_item_fold;
-    }
-};
 
-@media (max-width: $width-media3) {
-    .base_left_item_hide {
-        left: 0!important;
+    .foot {
+        @extend %foot_item;
+    }
+    .base-foot {
+        @extend %base_foot_item;
     }
 
-    .media3-hide {
-        display: none!important;
-    }
-
-    // final
-    ._base_left {
-        @extend .base_left_item_hide;
-    }
-
-};
-
-._base_left.hide {
-    @extend %base_left_item_hide;
-}
-
-._base_left.fold {
-    @extend %base_left_item_fold;
 }

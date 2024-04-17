@@ -1,5 +1,5 @@
 <template>
-<div id="head">
+<div id="head" class="head_item hmormal">
     <div id="nav">
         <div id="nav-left">
             <div class="dropdown title-icon" >
@@ -78,7 +78,7 @@
                 </div>
             </div>
             <div class="list2" v-show="(1<=window_size_type && window_size_type<=3)">
-                <div class="_hide" @click="flatenHead">
+                <div class="media2_hide" @click="flatenHead">
                     <a class="icon-a">
                         <svg t="1712418693646" class="icon" v-show="headFold" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2573" width="200" height="200">
                             <path  d="M853.333 247.467H170.667c-17.067 0-34.134-17.067-34.134-34.134S153.6 179.2 170.667 179.2h682.666c17.067 0 34.134 17.067 34.134 34.133s-17.067 34.134-34.134 34.134z m0 298.666H170.667c-17.067 0-34.134-17.066-34.134-34.133s17.067-34.133 34.134-34.133h682.666c17.067 0 34.134 17.066 34.134 34.133s-17.067 34.133-34.134 34.133z m0 298.667H170.667c-17.067 0-34.134-17.067-34.134-34.133s17.067-34.134 34.134-34.134h682.666c17.067 0 34.134 17.067 34.134 34.134S870.4 844.8 853.333 844.8z" fill="#ffffff" p-id="2574"></path>
@@ -106,7 +106,7 @@ export default {
         profileFold: Boolean,
         profileHide: Boolean,
         headFold: Boolean,
-        window_size_type: Int16Array,
+        window_size_type: Number,
 
     },
     methods: {

@@ -1,0 +1,50 @@
+div {
+    user-select: none;
+    margin: 0;
+}
+
+input {
+    font-family: $font-family;
+    text-indent: 8px;
+    &::placeholder {
+        font-size: 10px;
+    }
+}
+
+
+img {
+    -webkit-user-drag: none;
+}
+
+svg {
+    height: $icon-size;
+    width:  $icon-size;
+    align-items: center;
+}
+
+b {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    border-top: 4px dashed;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+    color: #fff;
+}
+
+.text {
+    color: #fff;
+    white-space: nowrap;
+    text-shadow: none;
+    font-size: $font-size;
+    font-family: $font-family;
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.inline {
+    margin-bottom: 5px;
+}

@@ -20,3 +20,19 @@ svg,path {
 img {
     -webkit-user-drag: none;
 }
+
+.icon {
+    height: $icon-size;
+    width:  $icon-size;
+}
+
+.text {
+    /* align-items: center; */
+    color: #fff;
+    white-space: nowrap;
+    text-shadow: none;
+    font-size: $font-size;
+    font-family: $font-family;
+    line-height: 3.25;
+    padding-left: 3px;
+}

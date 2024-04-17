@@ -12,26 +12,26 @@
 <AppLeft    :window_size_type="window_size_type"
             :profileHide="profileHide">
 </AppLeft>
-<AppRight></AppRight>
-<AppFoot></AppFoot>
+<!-- <AppRight></AppRight> -->
+<!-- <AppFoot></AppFoot> -->
 
-<div id="bg"></div>
-<div class="article-bg _base_right">
+<!-- <div id="bg"></div> -->
+<!-- <div class="article-bg _base_right">
     <div class="article-container">
         <div class="article-block" v-for="(item,index) of articles" :key="'article'+index">
             <img :src="item.img" alt="article title img">
         </div>
     </div>
-</div>
+</div> -->
 
 </template>
 
 <script>
-import { get_window_messages,dqc,dqc_rm,dqc_ad } from '@/utils.js';
-import AppRight from '@/contents/AppRight.vue';
+import { get_window_messages,dqc,dqc_rm,dqc_ad,dqc_switch } from '@/utils.js';
+// import AppRight from '@/contents/AppRight.vue';
 import AppLeft from '@/contents/AppLeft.vue';
 import AppHead from '@/contents/AppHead.vue';
-import AppFoot from '@/contents/AppFoot.vue';
+// import AppFoot from '@/contents/AppFoot.vue';
 
 export default {
     name: 'App',
@@ -89,7 +89,10 @@ export default {
         }
     },
     components: {
-        AppRight,AppLeft,AppHead,AppFoot
+        // AppRight,
+        // AppLeft,
+        AppHead,
+        // AppFoot
     },
 
     methods: {
@@ -114,6 +117,7 @@ export default {
             dqc('.article-bg', 'profile-fold');
             dqc('.article-container', 'profile-fold');
             this.profileFold = !this.profileFold;
+            dqc_switch(".left_item","lfold",["lhide","lfold","lnormal"]);
         },
         hideProfile() {
             dqc("#left","profile-hide");
