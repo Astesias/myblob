@@ -1,5 +1,5 @@
 <template>
-<div id="left" class="y-scroll">
+<div id="left" class="y-scroll profile-hide-re" v-show="window_size_type<2||profileHide">
     <div id="left-container">
         <div id="left-block">
             <div id="profile-img-container">
@@ -28,7 +28,8 @@
 export default {
     name: 'AppLeft',
     props: {
-        
+        window_size_type: Int16Array,
+        profileHide: Boolean,
     }
 }
 </script>

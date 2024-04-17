@@ -1,0 +1,22 @@
+div {
+    user-select: none;
+}
+
+input {
+    font-family: $font-family;
+    text-indent: 8px;
+    &:focus{
+        outline: #66ccff solid 1px;
+    }
+    &::placeholder {
+        font-size: 10px;
+    }
+}
+
+svg,path {
+    fill: $svg-color1;
+}
+
+img {
+    -webkit-user-drag: none;
+}

@@ -2,25 +2,25 @@
 <div id="head">
     <div id="nav">
         <div id="nav-left">
-            <div class="dropdown title-icon">
-                <a class="icon-a">
+            <div class="dropdown title-icon" >
+                <a class="icon-a profile-a" v-show="profileFold||profileHide" @click="hideProfile">
                     <svg t="1712672971576" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1543" width="200" height="200">
                         <path d="M512 554.667a93.867 93.867 0 1 0-93.867-93.867A93.867 93.867 0 0 0 512 554.667z m0 68.266A162.133 162.133 0 1 1 674.133 460.8 162.133 162.133 0 0 1 512 621.653zM266.667 797.44a420.693 420.693 0 0 1-78.08-72.107l-75.947 73.814 42.667 8.106a34.133 34.133 0 0 1 26.88 26.88l8.106 42.667z m544-152.747a350.293 350.293 0 1 0-13.654 20.054z m-53.76 154.88l79.786 79.787 8.107-42.667a34.133 34.133 0 0 1 25.6-26.026l42.667-8.107-78.507-77.227a420.693 420.693 0 0 1-78.933 74.24z m-60.587 35.84a418.987 418.987 0 0 1-368.213 0L192 968.96a34.133 34.133 0 0 1-57.6-17.493l-16.213-81.494-81.494-16.64a34.133 34.133 0 0 1-17.493-57.6l128-128a418.133 418.133 0 1 1 725.333 3.414l130.56 130.56a34.133 34.133 0 0 1-17.493 57.6l-81.493 16.213-16.214 81.493a34.133 34.133 0 0 1-57.6 17.494z" fill="#ffffff" p-id="1544"></path>
                     </svg>
                 </a>
-                <div id="brief" v-show="!profileFold">Live Your Love</div>
+                <div id="brief" v-show="!profileFold&&!profileHide">Live Your Love</div>
             </div>
-            <div class="none"></div>
+            <!-- <div class="none"></div> -->
         </div>
-        <div id="nav-mid">
-            <div class="dropdown">
+        <div id="nav-mid" >
+            <div class="dropdown" v-show="!profileHide">
                 <a class="icon-a" @click="flatenProfile">
                     <svg t="1712754247132" class="icon icon-rotate derotate" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1543" width="200" height="200">
                         <path d="M872.533 819.627a34.133 34.133 0 0 1-48.213 48.213L492.373 535.893a34.133 34.133 0 0 1 0-48.213L824.32 155.733a34.133 34.133 0 0 1 48.213 48.214L564.907 512z m-341.333 0a34.133 34.133 0 0 1-48.213 48.213l-331.52-331.52a34.133 34.133 0 0 1 0-48.213L483.413 156.16a34.133 34.133 0 0 1 48.214 48.213L223.573 512z" fill="#ffffff" p-id="1544"></path>
                     </svg>
                 </a>
             </div>
-            <div id="search">
+            <div id="search" v-show="window_size_type<2">
                 <input type="text" placeholder="搜索内容...">
                 <a class="icon-a">
                     <svg t="1712625367754" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1543" width="200" height="200">
@@ -29,6 +29,7 @@
                 </a>
             </div>
         </div>
+        <div class="none" v-show="!(window_size_type<2)"></div>
         <div class="none"></div>
         <div id="nav-right">
             <div class="list head-fold profile-fold">
@@ -76,7 +77,7 @@
                     <button class=".login-item-s btn login-item">登录</button>
                 </div>
             </div>
-            <div class="list2">
+            <div class="list2" v-show="(1<=window_size_type && window_size_type<=3)">
                 <div class="_hide" @click="flatenHead">
                     <a class="icon-a">
                         <svg t="1712418693646" class="icon" v-show="headFold" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2573" width="200" height="200">
@@ -100,9 +101,12 @@ export default {
     props: {
         clickFlatenProfile: Function,
         clickFlatenLogin: Function,
-        clickFflatenHead: Function,
+        clickFlatenHead: Function,
+        clickHideProfile: Function,
         profileFold: Boolean,
+        profileHide: Boolean,
         headFold: Boolean,
+        window_size_type: Int16Array,
 
     },
     methods: {
@@ -117,8 +121,13 @@ export default {
             }
         },
         flatenHead() {
-            if (this.clickFflatenHead) {
-                this.clickFflatenHead();
+            if (this.clickFlatenHead) {
+                this.clickFlatenHead();
+            }
+        },
+        hideProfile() {
+            if (this.clickHideProfile) {
+                this.clickHideProfile();
             }
         },
 

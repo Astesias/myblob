@@ -1,11 +1,17 @@
+<style lang="scss">@import "./assets/css/style.scss";</style>
 <template>
 <AppHead    :clickFlatenProfile="flatenProfile"
             :clickFlatenLogin="flatenLogin"
-            :clickFflatenHead="flatenHead"
+            :clickFlatenHead="flatenHead"
+            :clickHideProfile="hideProfile"
             :profileFold="profileFold"
-            :headFold="headFold">
+            :headFold="headFold"
+            :profileHide="profileHide"
+            :window_size_type="window_size_type">
 </AppHead>
-<AppLeft></AppLeft>
+<AppLeft    :window_size_type="window_size_type"
+            :profileHide="profileHide">
+</AppLeft>
 <AppRight></AppRight>
 <AppFoot></AppFoot>
 
@@ -13,7 +19,7 @@
 <div class="article-bg _base_right">
     <div class="article-container">
         <div class="article-block" v-for="(item,index) of articles" :key="'article'+index">
-            <img :src="item.img" alt="article title img" :style="imgStyle">
+            <img :src="item.img" alt="article title img">
         </div>
     </div>
 </div>
@@ -21,7 +27,7 @@
 </template>
 
 <script>
-import { get_window_messages,dqc } from '@/utils.js';
+import { get_window_messages,dqc,dqc_rm,dqc_ad } from '@/utils.js';
 import AppRight from '@/contents/AppRight.vue';
 import AppLeft from '@/contents/AppLeft.vue';
 import AppHead from '@/contents/AppHead.vue';
@@ -29,6 +35,7 @@ import AppFoot from '@/contents/AppFoot.vue';
 
 export default {
     name: 'App',
+    setup() {},
 
     data() {
         return {
@@ -36,6 +43,9 @@ export default {
             headFold: true,
             loginFold: true,
             profileFold: false,
+            profileHide: false,
+            window_size_type: 0,
+            last_window_size_type: 0,
             articles: [{
                     img: require('@/assets/image/abg2.jpg'),
                     imgStyle: {
@@ -105,24 +115,70 @@ export default {
             dqc('.article-container', 'profile-fold');
             this.profileFold = !this.profileFold;
         },
+        hideProfile() {
+            dqc("#left","profile-hide");
+            dqc("#left","profile-hide-re");
+            dqc(".list","profile-hide-flag");
+            dqc("#nav-left","profile-hide-flag");
+            // dqc(".article-bg","profile-hide-flag");
+            this.profileHide = !this.profileHide;
+        },
+
         handleClick($event) {
             let nowel = $event.target;
             if (!nowel.classList.contains('login-item') && !this.loginFold) {
                 this.flatenLogin();
             }
+        },
+        handleResize($event,first=false) {
+            let nowel = $event.target;
+            console.log(window.innerWidth);
+            this.window_size_type = window.innerWidth > 750 ? 0 : window.innerWidth > 450 ? 1 : 2;
+            
+            if(first||this.last_window_size_type!=this.window_size_type){
+                console.log(nowel);
+                console.log(first);
+                if(this.window_size_type==0){
+                    if(this.profileFold){
+                        this.flatenProfile();
+                    }
+                }
+                if(this.window_size_type==2){
+                    if(!this.profileHide){
+                        this.hideProfile();
+                        this.profileHide = true;
+                    }
+                }
+            else {
+                if(!this.profileFold){
+                    this.flatenProfile();
+                }
+            }
+            }
+            if(this.window_size_type==2){
+                dqc_ad("#nav-left","profile-hide-flag");
+            }
+            if(this.window_size_type!=2){
+                dqc_rm("#left","profile-hide");
+                dqc_rm("#left","profile-hide-re");
+            }
+            this.last_window_size_type = this.window_size_type;
         }
     },
 
     mounted() {
         document.addEventListener('click', this.handleClick);
+        window.addEventListener('resize', this.handleResize);
+        this.handleResize(true);
+        // this.profileFold = this.window_size_type<=0;
+
     },
 
     beforeUnmount() {
         document.removeEventListener('click', this.handleClick);
+        window.removeEventListener('resize', this.handleResize);
     }
 }
 </script>
 
-<style lang="scss">
-@import "./assets/css/style.scss";
-</style>
+

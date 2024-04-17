@@ -47,3 +47,21 @@ export function dqc(selector, className) {
     }
   });
 }
+
+export function dqc_rm(selector, className) {
+  let dqList = document.querySelectorAll(selector);
+  dqList.forEach(element => {
+    if (element.classList.contains(className)) {
+      element.classList.remove(className);
+    }
+  });
+}
+
+export function dqc_ad(selector, className) {
+  let dqList = document.querySelectorAll(selector);
+  dqList.forEach(element => {
+    if (!element.classList.contains(className)) {
+      element.classList.add(className);
+    }
+  });
+}
