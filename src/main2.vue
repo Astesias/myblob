@@ -1,18 +1,15 @@
 <style lang="scss">@import "./assets/css2/style_.scss";</style>
 <template>
   
-            <!-- :clickFlatenProfile="flatenProfile"
-            :clickFlatenLogin="flatenLogin"
-            :clickFlatenHead="flatenHead"
-            :clickHideProfile="hideProfile"
-            :profileFold="profileFold"
-            :headFold="headFold"
-            :profileHide="profileHide"
-            :window_size_type="window_size_type" -->
-            <AppHead  >
+            
+<AppHead :wt="wt"
+>
 </AppHead>
+<AppLeft></AppLeft>
+<div id="bg" class="base_head hnormal"></div>
 
 </template>
+
 
 <script>
 // import { get_window_messages,
@@ -23,7 +20,7 @@
 //  } from '@/utils.js';
 // import AppRight from '@/contents2/AppRight.vue';
 
-// import AppLeft from '@/contents2/AppLeft.vue';
+import AppLeft from '@/contents2/AppLeft.vue';
 import AppHead from '@/contents2/AppHead.vue';
 // import AppFoot from '@/contents2/AppFoot.vue';
 
@@ -31,33 +28,38 @@ export default {
     name: 'App',
     data() {
         return {
-            headFold: true,
-            loginFold: true,
-            profileFold: false,
-            profileHide: false,
-            window_size_type: 0,
-            last_window_size_type: 0,
+            wt : 0,
+            last_wt : 0,
         }
     },
     components: {
         // AppRight,
-        // AppLeft,
+        AppLeft,
         AppHead,
         // AppFoot
     },
 
     methods: {
-
+        resizeListener() {
+            this.wt = window.innerWidth > 1000 ? 0 : window.innerWidth > 750 ? 1 : window.innerWidth > 500 ? 2 : 3;
+            console.log(this.wt,window.innerWidth);
+            if(this.wt!=this.last_wt){
+                location.reload();
+                console.log("update");
+            }
+            this.last_wt = this.wt;
+        },
     },
 
+    created() {
+        this.last_wt = this.wt = window.innerWidth > 1000 ? 0 : window.innerWidth > 750 ? 1 : window.innerWidth > 500 ? 2 : 3;
+    },
     mounted() {
-        // document.addEventListener('click', this.handleClick);
-        // window.addEventListener('resize', this.handleResize);
+        window.addEventListener('resize', this.resizeListener);
     },
 
     beforeUnmount() {
-        // document.removeEventListener('click', this.handleClick);
-        // window.removeEventListener('resize', this.handleResize);
+        window.removeEventListener('resize', this.resizeListener);
     }
 }
 </script>

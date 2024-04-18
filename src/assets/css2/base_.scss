@@ -9,8 +9,8 @@ $right-dis: 180px!default;
 $head-dis: 50px;
 $foot-dis: 50px;
 
-$icon-size : 18px;
-$font-size : 14px;
+$icon-size : 16px;
+$font-size : 13px;
 
 $animation-time: 0.5s;
 
@@ -19,33 +19,55 @@ $font-family : "Source Sans Pro","Hiragino Sans GB","Microsoft Yahei",SimSun,Hel
 
 $width-media1: 1000px;
 $width-media2: 750px;
-$width-media3: 450px;
+$width-media3: 500px;
 
 
 $svg-color1: #fff;
+$svg-color2: #66ccff;
 
+%base_left_animation {
+    transition: left $animation-time ease;
+}
+%left_item_animation {
+    transition: width $animation-time ease;
+}
 
 // left
 %left_item {
     width: $left-dis!important;
+    @extend %left_item_animation;
 }
 %left_item_fold {
     width: $left-width-min!important;
+    @extend %left_item_animation;
 }
 %left_item_hide {
     width: 0!important;
+    @extend %left_item_animation;
+}
+%left_item_noin_hide {
+    width: 0!important;
+    @extend %left_item_animation;
+}
+%left_item_hide_re {
+    width: 70%!important;
+    @extend %left_item_animation;
 }
 %base_left_item {
     left: $left-dis!important;
+    @extend %base_left_animation;
 }
 %base_left_item_fold {
     left: $left-width-min!important;
+    @extend %base_left_animation;
 }
 %base_left_item_hide {
     left: 0!important;
+    @extend %base_left_animation;
 }
 %base_left_item_hide_re {
     left: 70%!important;
+    @extend %base_left_animation;
 }
 
 // head
@@ -86,71 +108,104 @@ $svg-color1: #fff;
 
 @media (max-width: $width-media1) {
 
-    .dropdown div.text {
+    .meida1-hide {
         display: none!important;
+    }
+    svg {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+    .inline-container {
+        padding: 0!important;
     }
 };
 
 @media (max-width: $width-media2) {
     #bg {
-        background-image: $bg2;
-        left: 0px;
+        background-image: $bg2!important;
     }
     .media2_hide {
-        display: inherit!important;
+        display: none!important;
     }
+    .media2_show {
+        display: unset!important;
+    }
+    #nav-right {
+        position: fixed;
+        right: 0;
+        flex-direction: column!important;
+        height: fit-content!important;
+        align-items: start!important;
+        .inline-container {
+            width: 100%!important;
+            padding-top: 15px!important;
+            padding-bottom: 15px!important;
+            .text {
+                display: unset!important;
+            }
+            background-color: $head-color;
+            box-shadow: 0 -1px 0 rgba(0,0,0,.1);
+        }
+    }
+    #login-tab {
+        position: unset!important;
+        right: 0!important;
+        width: 100%;
+        .login-container {
+            padding-left: 8px!important;
+            padding-right: 8px!important;
+        }
+        // margin: 20px 10px 5px 10px!important;
+        input {
+            width: 100%!important;
+        }
+    }
+
 };
 
 @media (max-width: $width-media3) {
+    .media3_hide {
+        display: none!important;
+    }
 };
 
 
 .left_item.lnormal {
-    @extend %left_item
+    @extend %left_item;
 }
 .left_item.lfold {
     @extend %left_item_fold;
     transition: width $animation-time ease;
-    img {
-        width: calc(#{$left-width-min}/2);
-        height: calc(#{$left-width-min}/2);
-        transition: all 0.2s linear;
-        animation: rotate-beyond 1s forwards;
-    }
-    #profile_name{
-        writing-mode: vertical-rl;
-        animation: colors $animation-time forwards;
-        padding-bottom: 6px;
-        padding-left: 0px;
-    }
-    #left-block:first {
-        box-shadow: unset;
-    }
-    .block-name {
-        padding-left: 0!important;
-        align-self: center!important;
-    }
-    .block-item {
-        justify-content: center;
-    }
-    svg {
-        padding-top: calc( #{$left-width-min}/3 );
-        padding-bottom: calc( #{$left-width-min}/3 );
-        padding-left: 0!important;
-    }
     &::-webkit-scrollbar {
         width: 6px;
         padding-top: 10px;
     }
 }
+
+.left_item.lhide.noin {
+    @extend %left_item_fold;
+}
+.left_item.lhide.re {
+    @extend %left_item_hide_re;
+}
 .left_item.lhide {
-    @extend %left_item_hide
+    @extend %left_item_hide;
 }
 .base_left.lnormal {
     @extend %base_left_item;
+    &#nav-mid .fold-icon {
+        transform: rotateY(0deg);
+    }
 }
 .base_left.lfold {
     @extend %base_left_item_fold;
+    &#nav-mid .fold-icon {
+        transform: rotateY(-180deg);
+    }
+}
+
+.base_left.lhide.re {
+    @extend %base_left_item_hide_re;
 }
 .base_left.lhide {
     @extend %base_left_item_hide;
@@ -169,10 +224,10 @@ $svg-color1: #fff;
     @extend %base_right_item_hide
 }
 
-.head_item.hmormal {
+.head_item.hnormal {
     @extend %head_item
 }
-.base_head.hmormal {
+.base_head.hnormal {
     @extend %base_head_item
 }
 
