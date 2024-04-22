@@ -21,7 +21,7 @@ articles: [
 ```
 ```html
 <div id="article-bg">
-    <div id="article-container">
+    <div id="article-container2">
         <div class="article-block" v-for="(item,index) of articles" :key="'article'+index">
             <img :src="item.img" alt="article title img" :style="imgStyle">
         </div>

@@ -7,7 +7,7 @@ input {
     font-family: $font-family;
     text-indent: 8px;
     &::placeholder {
-        font-size: 6px;
+        font-size: $font-size;
     }
 }
 
@@ -48,3 +48,35 @@ b {
 .inline {
     margin-bottom: 5px;
 }
+
+.y-scroll{
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: #4d7fff #ddd;
+
+    &::-webkit-scrollbar {
+        width: 10px;
+        padding-top: 10px;
+        z-index: -1;
+        position: absolute;
+        border: 1px solid #ccc;
+    }
+    &::-webkit-scrollbar-button {
+        height: 0px;
+        z-index: -1;
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: #ebeceb00;
+        border: none;
+        z-index: -1;
+      }
+
+    &::-webkit-scrollbar-thumb {
+        background: linear-gradient(to bottom, rgba(0, 255, 179, 0.427) ,rgba(255, 255, 79, 0.395));
+        // border-radius: 5px;
+        z-index: -1;
+      }
+}
+

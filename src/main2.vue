@@ -1,15 +1,31 @@
-<style lang="scss">@import "./assets/css2/style_.scss";</style>
+<style lang="scss">
+@import "./assets/css2/style_.scss";
+</style>
 <template>
-  
-            
-<AppHead :wt="wt"
->
+<AppHead :wt="wt">
 </AppHead>
+
 <AppLeft></AppLeft>
+<AppFoot></AppFoot>
+
 <div id="bg" class="base_head hnormal"></div>
 
-</template>
+<div class="article-bg base_left lnormal hnormal container rnormal y-scroll ">
+    <div class="article-container">
+        <div class="article-container2">
+            <div class="article-block" v-for="(item,index) of articles" :key="'article'+index">
+                <img :src="item.img" alt="article title img">
+            </div>
+        </div>
 
+    </div>
+    <div>
+
+    </div>
+    <AppRight :wt="wt">
+    </AppRight>
+</div>
+</template>
 
 <script>
 // import { get_window_messages,
@@ -18,32 +34,46 @@
 //         dqc_ad,
 //         dqc_switch
 //  } from '@/utils.js';
-// import AppRight from '@/contents2/AppRight.vue';
 
+import AppRight from '@/contents2/AppRight.vue';
 import AppLeft from '@/contents2/AppLeft.vue';
 import AppHead from '@/contents2/AppHead.vue';
-// import AppFoot from '@/contents2/AppFoot.vue';
+import AppFoot from '@/contents2/AppFoot.vue';
 
 export default {
     name: 'App',
     data() {
+        const article = [{
+            img: require('@/assets/image/abg2.jpg'),
+            imgStyle: {
+                '--img': require('@/assets/image/abg2.jpg')
+            },
+            title: '1111111111',
+            describe: '22222222222',
+            time: ['2000', '01', '01', '00', '00'],
+            contont: 'xxxxxxxxx',
+            comment: 0,
+            view: 1,
+            link: "/article/1"
+        }];
         return {
-            wt : 0,
-            last_wt : 0,
+            wt: 0,
+            last_wt: 0,
+            articles: [].concat(article, article, article, article, article),
         }
     },
     components: {
-        // AppRight,
+        AppRight,
         AppLeft,
         AppHead,
-        // AppFoot
+        AppFoot
     },
 
     methods: {
         resizeListener() {
             this.wt = window.innerWidth > 1000 ? 0 : window.innerWidth > 750 ? 1 : window.innerWidth > 500 ? 2 : 3;
-            console.log(this.wt,window.innerWidth);
-            if(this.wt!=this.last_wt){
+            console.log(this.wt, window.innerWidth);
+            if (this.wt != this.last_wt) {
                 location.reload();
                 console.log("update");
             }
@@ -63,5 +93,3 @@ export default {
     }
 }
 </script>
-
-

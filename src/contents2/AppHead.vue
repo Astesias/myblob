@@ -18,13 +18,19 @@
         </a>
         <div class="search-container">
             <div class="inline-container">
-                <input type="text" placeholder="搜索内容...">
+                <div class="search-container2">
+                    <input type="text" placeholder="搜索内容...">
+                    <svg t="1712625367754" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1543" width="200" height="200">
+                        <path d="M889.173 826.88l-112.64-113.067a362.667 362.667 0 1 0-46.933 49.494l111.36 111.36a34.133 34.133 0 0 0 48.213-48.214z m-398.506-42.667a294.4 294.4 0 1 1 294.4-294.4 294.4 294.4 0 0 1-294.4 295.254z" fill="#000" p-id="1544"></path>
+                    </svg>
+                </div>
+               
             </div>
-            <a class="inline-container">
+            <!-- <a class="inline-container search-icon">
                 <svg t="1712625367754" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1543" width="200" height="200">
                     <path d="M889.173 826.88l-112.64-113.067a362.667 362.667 0 1 0-46.933 49.494l111.36 111.36a34.133 34.133 0 0 0 48.213-48.214z m-398.506-42.667a294.4 294.4 0 1 1 294.4-294.4 294.4 294.4 0 0 1-294.4 295.254z" fill="#000" p-id="1544"></path>
                 </svg>
-            </a>
+            </a> -->
         </div>
     </div>
 

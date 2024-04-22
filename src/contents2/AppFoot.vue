@@ -1,5 +1,5 @@
 <template>
-<div id="foot">
+<div id="foot" class="foot_item fnormal base_left lnormal">
 </div>
 </template>
 

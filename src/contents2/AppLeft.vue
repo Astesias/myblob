@@ -1,6 +1,6 @@
 <template>
-<div id="left" class="left_item lnormal base_head hnormal">
-    <div id="left-container" class="left_item lnormal">
+<div id="left" class="left_item lnormal base_head hnormal y-scroll">
+    <div id="left-container">
         <div id="left-block">
             <div id="profile-img-container">
                 <img src="../assets/image/profile.jpg" alt="profile">
@@ -31,3 +31,5 @@ export default {
     // }
 }
 </script>
+
+// TODO left search

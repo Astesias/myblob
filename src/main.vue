@@ -17,7 +17,7 @@
 
 <!-- <div id="bg"></div> -->
 <!-- <div class="article-bg _base_right">
-    <div class="article-container">
+    <div class="article-container2">
         <div class="article-block" v-for="(item,index) of articles" :key="'article'+index">
             <img :src="item.img" alt="article title img">
         </div>
@@ -115,7 +115,7 @@ export default {
             dqc('._fold-hide', 'fold-hide');
             dqc('#body', 'profile-fold');
             dqc('.article-bg', 'profile-fold');
-            dqc('.article-container', 'profile-fold');
+            dqc('.article-container2', 'profile-fold');
             this.profileFold = !this.profileFold;
             dqc_switch(".left_item","lfold",["lhide","lfold","lnormal"]);
         },

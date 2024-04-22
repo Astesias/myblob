@@ -5,9 +5,11 @@ $profile: url("./assets/image/profile.jpg");
 $left-dis: 200px;
 $left-dis-fold: 54px;
 $left-width-min: 54px;
-$right-dis: 180px!default;
+$right-dis: 240px!default;
 $head-dis: 50px;
 $foot-dis: 50px;
+$bar-dis: 10px;
+$rightbar-dis: 10px;
 
 $icon-size : 16px;
 $font-size : 13px;
@@ -87,7 +89,7 @@ $svg-color2: #66ccff;
 }
 
 %base_right_item {
-    right: $right-dis!important;
+    right: calc( #{$right-dis} + 10px)!important;
 }
 %base_right_item_hide {
     right: 0!important;
@@ -177,7 +179,7 @@ $svg-color2: #66ccff;
     @extend %left_item_fold;
     transition: width $animation-time ease;
     &::-webkit-scrollbar {
-        width: 6px;
+        width: 8px;
         padding-top: 10px;
     }
 }
@@ -221,7 +223,7 @@ $svg-color2: #66ccff;
     @extend %base_right_item
 }
 .base_right.rhide {
-    @extend %base_right_item_hide
+    @extend %base_right_item_hide;
 }
 
 .head_item.hnormal {
