@@ -134,7 +134,8 @@ $svg-color2: #66ccff;
     }
     #nav-right {
         position: fixed;
-        right: 0;
+        overflow: hidden;
+        right: $rightbar-dis;
         flex-direction: column!important;
         height: fit-content!important;
         align-items: start!important;
