@@ -1,4 +1,9 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router';
-createApp(App).use(router).mount('#app');
+import '@/assets/icon/iconfont1/iconfont.css'
+import '@/assets/icon/iconfont2/iconfont.css'
+
+var app = createApp(App)
+app.use(router)
+app.mount('#app');

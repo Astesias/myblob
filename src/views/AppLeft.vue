@@ -3,19 +3,22 @@
     <div id="left-container">
         <div id="left-block">
             <div id="profile-img-container">
-                <img src="../assets/image/profile.jpg" alt="profile">
+                <img src="../assets/image/profile.jpg" alt="profile" @click="clickprofileimg">
             </div>
-            <div id="profile-name" class="text">玫星晴</div>
+            <div id="profile-name" class="text">
+                玫星晴
+            </div>
         </div>
-        <div id="left-block" v-for="_ in 3" :key="_">
-            <div class="block-name">导航</div>
-            <div class="block-item" v-for="_ in 5" :key="_">
-                <svg t="1712852815015" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1543" width="200" height="200">
-                    <path d="M640 631.467a8.533 8.533 0 0 0-8.533 8.533v213.333a8.533 8.533 0 0 0 8.533 8.534h213.333a8.533 8.533 0 0 0 8.534-8.534V640a8.533 8.533 0 0 0-8.534-8.533z m0-68.267h213.333a76.8 76.8 0 0 1 76.8 76.8v213.333a76.8 76.8 0 0 1-76.8 76.8H640a76.8 76.8 0 0 1-76.8-76.8V640a76.8 76.8 0 0 1 76.8-76.8z m0-401.067a8.533 8.533 0 0 0-8.533 8.534V384a8.533 8.533 0 0 0 8.533 8.533h213.333a8.533 8.533 0 0 0 8.534-8.533V170.667a8.533 8.533 0 0 0-8.534-8.534z m0-68.266h213.333a76.8 76.8 0 0 1 76.8 76.8V384a76.8 76.8 0 0 1-76.8 76.8H640a76.8 76.8 0 0 1-76.8-76.8V170.667a76.8 76.8 0 0 1 76.8-76.8z m-469.333 537.6a8.533 8.533 0 0 0-8.534 8.533v213.333a8.533 8.533 0 0 0 8.534 8.534H384a8.533 8.533 0 0 0 8.533-8.534V640a8.533 8.533 0 0 0-8.533-8.533z m0-68.267H384a76.8 76.8 0 0 1 76.8 76.8v213.333a76.8 76.8 0 0 1-76.8 76.8H170.667a76.8 76.8 0 0 1-76.8-76.8V640a76.8 76.8 0 0 1 76.8-76.8z m0-401.067a8.533 8.533 0 0 0-8.534 8.534V384a8.533 8.533 0 0 0 8.534 8.533H384a8.533 8.533 0 0 0 8.533-8.533V170.667a8.533 8.533 0 0 0-8.533-8.534z m0-68.266H384a76.8 76.8 0 0 1 76.8 76.8V384a76.8 76.8 0 0 1-76.8 76.8H170.667a76.8 76.8 0 0 1-76.8-76.8V170.667a76.8 76.8 0 0 1 76.8-76.8z" fill="#16adfc" p-id="1544"></path>
-                </svg>
-                <div class="block-item-name text">原神？启动！</div>
-                <div class="none _fold-hide"></div>
-                <div class="none _fold-hide"></div>
+        <div id="left-block" v-for="linkscontent in alllinkscontent" :key="linkscontent.id">
+            <div class="block-name">{{ linkscontent.name }}</div>
+            <div class="block-item" v-for="linkcontent in linkscontent.content" :key="linkcontent.id" :class="{ subhide:linkcontent.sub , parent:linkcontent.parent , parentfold:linkcontent.parent}" 
+            @click="linkcontent.href?openNewPage(linkcontent.href,linkcontent.blank):hideSub($event)">
+                    <i class="iconfont" :class="linkcontent.class" :style="linkcontent.style"></i>
+                    <div class="block-item-name text">{{ linkcontent.name }}</div>  
+                    <div class="none _fold-hide"></div>
+                    <div class="none _fold-hide"></div>
+                    <i class="iconfont icon-fangxiangfangxiang-xiangzuo unfold" style="margin-left: auto; margin-right: 10px; color: rgb(0, 0, 0,0.44);font-size: 15px;"></i>
+                    <i class="iconfont icon-fangxiangfangxiang-xiangxia fold" style="margin-left: auto; margin-right: 10px; color: rgb(0, 0, 0,0.44);font-size: 15px;"></i>
             </div>
         </div>
     </div>
@@ -23,13 +26,70 @@
 </template>
 
 <script>
+
 export default {
     name: 'AppLeft',
-    // props: {
-    //     window_size_type: Number,
-    //     profileHide: Boolean,
-    // }
+    props: {
+        alllinkscontent: Array
+    },
+    methods: {
+        openNewPage(href, blank = false) {
+            if (blank) {
+                window.open(href, '_blank');
+            } else {
+                // this.$router.push('/');
+                this.$router.push(href);
+            }
+        },
+        hideSub(event) {
+            if(document.getElementById('left').classList.contains('lfold')) {
+                document.getElementById('foldbtn').click();
+            }
+            let ele = event.target;
+            if(ele.classList.contains('sub')){
+                return;
+            }
+            let bro = ele.parentElement.children;
+            let printNextElements = false;
+            if (ele.classList.contains('parentfold')) {
+                ele.classList.remove('parentfold');
+                ele.classList.add('parentnofold');
+            } else if(ele.classList.contains('parent')) {
+                ele.classList.remove('parentnofold');
+                ele.classList.add('parentfold');
+            }
+            // 遍历兄弟元素
+            for (let i = 0; i < bro.length; i++) {
+                let sibling = bro[i];
+
+                if (printNextElements) {
+                    // 判断是否包含特定 class
+                    if (!sibling.classList.contains('sub') && !sibling.classList.contains('subhide')) {
+                        break; // 遇到条件要求的元素，结束循环
+                    } else {
+                        if (sibling.classList.contains('subhide')) {
+                            sibling.classList.add('sub');
+                            sibling.classList.remove('subhide');
+                        } else {
+                            sibling.classList.add('subhide');
+                            sibling.classList.remove('sub');
+                        }
+                    }
+                }
+
+                // 如果当前兄弟元素是 ele 元素，则开始打印其之后的兄弟元素
+                if (sibling === ele) {
+                    printNextElements = true;
+                }
+            }
+
+        },
+        clickprofileimg(){
+            let a = document.getElementById("article");
+            a.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    
+    }
+
 }
 </script>
-
-// TODO left search

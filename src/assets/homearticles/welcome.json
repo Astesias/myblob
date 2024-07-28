@@ -1,0 +1,11 @@
+{
+    "img": "1.jpg",
+    "title": "Welcome to asterias.top",
+    "describe": "恭喜你发现了新大陆",
+    "time": ["2024", "07", "02", "18", "00"],
+    "comment": 0,
+    "view": 0,
+    "link": "welcome",
+    "href": "blob/welcome.md",
+    "top":true
+}

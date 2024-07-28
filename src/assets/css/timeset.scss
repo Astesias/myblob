@@ -1,0 +1,19 @@
+.timelinecontainer {
+    width: 100%;
+    // background-color: aqua;
+    height: fit-content;
+    ul {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.time {
+    background-color: rgba(206, 94, 240, 0.765);
+    width: 8%;
+    text-align: center;
+    border-radius: 7px;
+    color: #ffffff;
+    font-size: 13px;
+    padding: 3px 0 3px 0;
+}

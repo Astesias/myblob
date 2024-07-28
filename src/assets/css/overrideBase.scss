@@ -1,38 +1,111 @@
 div {
     user-select: none;
+    margin: 0;
 }
 
 input {
     font-family: $font-family;
     text-indent: 8px;
-    &:focus{
-        outline: #66ccff solid 1px;
-    }
     &::placeholder {
-        font-size: 10px;
+        font-size: $font-size;
     }
 }
 
-svg,path {
-    fill: $svg-color1;
-}
 
 img {
     -webkit-user-drag: none;
 }
 
-.icon {
+svg {
     height: $icon-size;
     width:  $icon-size;
+    align-items: center;
+}
+
+b {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    border-top: 4px dashed;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+    color: #fff;
 }
 
 .text {
-    /* align-items: center; */
     color: #fff;
     white-space: nowrap;
     text-shadow: none;
     font-size: $font-size;
     font-family: $font-family;
-    line-height: 3.25;
-    padding-left: 3px;
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.inline {
+    margin-bottom: 5px;
+}
+
+.y-scroll{
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: #4d7fff #ddd;
+
+    &::-webkit-scrollbar {
+        width: 10px;
+        padding-top: 10px;
+        z-index: -1;
+        position: absolute;
+        border: 1px solid #ccc;
+    }
+    &::-webkit-scrollbar-button {
+        height: 0px;
+        z-index: -1;
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: #ebeceb00;
+        border: none;
+        z-index: -1;
+      }
+
+    &::-webkit-scrollbar-thumb {
+        background: linear-gradient(to bottom, rgba(0, 255, 179, 0.427) ,rgba(255, 255, 79, 0.395));
+        // border-radius: 5px;
+        z-index: -1;
+      }
+}
+
+// * {
+//     box-sizing: border-box;
+// }
+
+.iconfont {
+    font-size: 14px;
+}
+
+/* 修改选中文本的样式 */
+::selection {
+    color: #fff; /* 选中文本的文字颜色为白色 */
+    background-color: #5bd56d; /* 选中文本的背景颜色为深蓝色 */
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5); /* 添加文字阴影效果 */
+    position: relative;
+  }
+  
+::selection::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    bottom: -2px;
+    left: -2px;
+    right: -2px;
+    width: 100%;
+    height: 100%;
+    background-color: #3498db; /* 选中文本的背景颜色 */
+    border-radius: 5px; /* 圆角的大小 */
+    z-index: -1; /* 将背景放置在文字下方 */
 }

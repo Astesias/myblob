@@ -1,7 +1,8 @@
 .DS_Store
 node_modules
 /dist
-
+/gitpage
+/bak
 
 # local env files
 .env.local
@@ -23,3 +24,4 @@ pnpm-debug.log*
 *.sw?
 
 /dist_
+/gitpage
